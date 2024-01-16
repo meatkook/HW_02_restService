@@ -1,0 +1,5 @@
+dbName: game_store
+url: jdbc:postgresql://localhost:5432/game_store
+username: postgres
+password: root_password
+dbDriverClass: org.postgresql.Driver
