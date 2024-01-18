@@ -13,14 +13,20 @@ import java.util.List;
 
 @WebServlet(name = "PlatformServlet", urlPatterns = "/api/platforms/*")
 public class PlatformController extends HttpServlet {
-    private PlatformService platformService;
-    private ObjectMapper objectMapper;
+    private final PlatformService platformService;
+    private final ObjectMapper objectMapper;
 
-    public void init() {
-        platformService = new PlatformService();
-        objectMapper = new ObjectMapper();
+    public PlatformController(){
+        this.platformService = new PlatformService();
+        this.objectMapper = new ObjectMapper();
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    public PlatformController(PlatformService platformService){
+        this.platformService = platformService;
+        this.objectMapper = new ObjectMapper();
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pathInfo = request.getPathInfo();
         if (pathInfo == null || pathInfo.equals("/")) {
             List<PlatformDto> platforms = platformService.getAll();
@@ -38,22 +44,24 @@ public class PlatformController extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PlatformDto newPlatform = objectMapper.readValue(request.getReader(), PlatformDto.class);
         PlatformDto createdPlatform = platformService.createPlatform(newPlatform);
         response.getWriter().write(objectMapper.writeValueAsString(createdPlatform));
+        response.setStatus(HttpServletResponse.SC_CREATED);
     }
 
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pathInfo = request.getPathInfo();
         Long id = Long.parseLong(pathInfo.substring(1));
         PlatformDto updatedPlatform = objectMapper.readValue(request.getReader(), PlatformDto.class);
         updatedPlatform.setId(id);
         PlatformDto createdPlatform = platformService.updatePlatform(updatedPlatform);
         response.getWriter().write(objectMapper.writeValueAsString(createdPlatform));
+        response.setStatus(HttpServletResponse.SC_OK);
     }
 
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) {
         String pathInfo = request.getPathInfo();
         Long id = Long.parseLong(pathInfo.substring(1));
         platformService.deletePlatform(id);

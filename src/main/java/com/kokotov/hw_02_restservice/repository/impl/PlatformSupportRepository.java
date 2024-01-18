@@ -32,6 +32,7 @@ public class PlatformSupportRepository implements Repository<PlatformSupport, Lo
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 PlatformSupport platformSupport = new PlatformSupport();
+                platformSupport.setId(resultSet.getLong("id"));
                 platformSupport.setGameId(resultSet.getLong("game_id"));
                 platformSupport.setPlatformId(resultSet.getLong("platform_id"));
                 return Optional.of(platformSupport);
@@ -52,6 +53,7 @@ public class PlatformSupportRepository implements Repository<PlatformSupport, Lo
 
             while (resultSet.next()) {
                 PlatformSupport platformSupport = new PlatformSupport();
+                platformSupport.setId(resultSet.getLong("id"));
                 platformSupport.setGameId(resultSet.getLong("game_id"));
                 platformSupport.setPlatformId(resultSet.getLong("platform_id"));
                 platformSupports.add(platformSupport);
@@ -74,7 +76,7 @@ public class PlatformSupportRepository implements Repository<PlatformSupport, Lo
             }
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
-//                platformSupport.setId(generatedKeys.getLong(1));
+                platformSupport.setId(generatedKeys.getLong(1));
                 return platformSupport;
             } else {
                 throw new SQLException("Creating platform support failed, no ID obtained.");
@@ -123,5 +125,9 @@ public class PlatformSupportRepository implements Repository<PlatformSupport, Lo
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 }

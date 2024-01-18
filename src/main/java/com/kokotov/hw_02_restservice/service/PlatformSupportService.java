@@ -5,7 +5,9 @@ import com.kokotov.hw_02_restservice.entity.PlatformSupport;
 import com.kokotov.hw_02_restservice.mapper.Mapper;
 import com.kokotov.hw_02_restservice.mapper.impl.PlatformSupportMapper;
 import com.kokotov.hw_02_restservice.repository.impl.PlatformSupportRepository;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class PlatformSupportService {
     private final PlatformSupportRepository repository;
     private final Mapper<PlatformSupportDto, PlatformSupport> mapper;

@@ -6,11 +6,13 @@ import com.kokotov.hw_02_restservice.mapper.Mapper;
 import com.kokotov.hw_02_restservice.mapper.impl.DeveloperMapper;
 import com.kokotov.hw_02_restservice.repository.Repository;
 import com.kokotov.hw_02_restservice.repository.impl.DeveloperRepository;
+import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 public class DeveloperService {
     private final Repository<Developer, Long> repository;
     private final Mapper<DeveloperDto, Developer> mapper;

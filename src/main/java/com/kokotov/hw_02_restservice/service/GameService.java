@@ -5,11 +5,13 @@ import com.kokotov.hw_02_restservice.entity.Game;
 import com.kokotov.hw_02_restservice.mapper.Mapper;
 import com.kokotov.hw_02_restservice.mapper.impl.GameMapper;
 import com.kokotov.hw_02_restservice.repository.impl.GameRepository;
+import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 public class GameService {
     private final GameRepository gameRepository;
     private final Mapper<GameDto, Game> gameMapper;

@@ -120,4 +120,8 @@ public class DeveloperRepository implements Repository<Developer, Long> {
             e.printStackTrace();
         }
     }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 }

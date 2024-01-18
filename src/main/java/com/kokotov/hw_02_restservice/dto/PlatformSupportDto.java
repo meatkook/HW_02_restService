@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlatformSupportDto {
+    Long id;
     Long gameId;
     Long platformId;
 }

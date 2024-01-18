@@ -8,6 +8,7 @@ public class PlatformSupportMapper implements Mapper<PlatformSupportDto, Platfor
     @Override
     public PlatformSupportDto toDto(PlatformSupport platformSupport) {
         PlatformSupportDto dto = new PlatformSupportDto();
+        dto.setId(platformSupport.getId());
         dto.setGameId(platformSupport.getGameId());
         dto.setPlatformId(platformSupport.getPlatformId());
         return dto;
@@ -16,6 +17,7 @@ public class PlatformSupportMapper implements Mapper<PlatformSupportDto, Platfor
     @Override
     public PlatformSupport toEntity(PlatformSupportDto dto) {
         PlatformSupport platformSupport = new PlatformSupport();
+        platformSupport.setId(dto.getId());
         platformSupport.setGameId(dto.getGameId());
         platformSupport.setPlatformId(dto.getPlatformId());
         return platformSupport;

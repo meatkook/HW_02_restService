@@ -6,11 +6,13 @@ import com.kokotov.hw_02_restservice.mapper.Mapper;
 import com.kokotov.hw_02_restservice.mapper.impl.PlatformMapper;
 import com.kokotov.hw_02_restservice.repository.Repository;
 import com.kokotov.hw_02_restservice.repository.impl.PlatformRepository;
+import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 public class PlatformService {
     private final Repository<Platform, Long> repository;
     private final Mapper<PlatformDto, Platform> mapper;

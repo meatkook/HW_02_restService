@@ -180,4 +180,8 @@ public class GameRepository implements Repository<Game, Long> {
             e.printStackTrace();
         }
     }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 }

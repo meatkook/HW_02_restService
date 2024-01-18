@@ -9,15 +9,25 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/api/games/platformSupport/*")
 public class PlatformSupportController extends HttpServlet {
-    private final PlatformSupportService platformSupportService = new PlatformSupportService();
+    private final PlatformSupportService platformSupportService;
+
+    public PlatformSupportController(){
+        this.platformSupportService = new PlatformSupportService();
+    }
+
+    public PlatformSupportController(PlatformSupportService platformSupportService){
+        this.platformSupportService = platformSupportService;
+    }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
         String[] pathParts = request.getPathInfo().split("/");
         if (pathParts.length == 3) {
             Long gameId = Long.parseLong(pathParts[1]);
             Long platformId = Long.parseLong(pathParts[2]);
-            PlatformSupportDto supportDto = new PlatformSupportDto(gameId, platformId);
+            PlatformSupportDto supportDto = new PlatformSupportDto();
+            supportDto.setGameId(gameId);
+            supportDto.setPlatformId(platformId);
             platformSupportService.create(supportDto);
             response.setStatus(HttpServletResponse.SC_CREATED);
         } else {
@@ -26,7 +36,7 @@ public class PlatformSupportController extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) {
         String[] pathParts = request.getPathInfo().split("/");
         if (pathParts.length == 3) {
             Long gameId = Long.parseLong(pathParts[1]);

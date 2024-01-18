@@ -13,15 +13,20 @@ import java.util.List;
 
 @WebServlet(name = "DeveloperServlet", urlPatterns = "/api/developers/*")
 public class DeveloperController extends HttpServlet {
-    private DeveloperService developerService;
-    private ObjectMapper objectMapper;
+    private final DeveloperService developerService;
+    private final ObjectMapper objectMapper;
 
-    public void init() {
-        developerService = new DeveloperService();
+    public DeveloperController(){
+        this.developerService = new DeveloperService();
+        this.objectMapper = new ObjectMapper();
+    }
+
+    public DeveloperController(DeveloperService developerService){
+        this.developerService = developerService;
         objectMapper = new ObjectMapper();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pathInfo = request.getPathInfo();
         if (pathInfo == null || pathInfo.equals("/")) {
             List<DeveloperDto> developers = developerService.getAllDevelopers();
@@ -39,23 +44,25 @@ public class DeveloperController extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         DeveloperDto newDeveloper = objectMapper.readValue(request.getReader(), DeveloperDto.class);
         DeveloperDto createdDeveloper = developerService.createDeveloper(newDeveloper);
         String developerJson = objectMapper.writeValueAsString(createdDeveloper);
+        response.setStatus(HttpServletResponse.SC_CREATED);
         response.getWriter().write(developerJson);
     }
 
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long id = Long.parseLong(request.getPathInfo().substring(1));
         DeveloperDto updatedDeveloper = objectMapper.readValue(request.getReader(), DeveloperDto.class);
         updatedDeveloper.setId(id);
         DeveloperDto modifiedDeveloper = developerService.updateDeveloper(updatedDeveloper);
         String developerJson = objectMapper.writeValueAsString(modifiedDeveloper);
+        response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().write(developerJson);
     }
 
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) {
         Long id = Long.parseLong(request.getPathInfo().substring(1));
         developerService.deleteDeveloper(id);
         response.setStatus(HttpServletResponse.SC_OK);

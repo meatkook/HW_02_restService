@@ -118,4 +118,8 @@ public class PlatformRepository implements Repository<Platform, Long> {
             e.printStackTrace();
         }
     }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
+    }
 }

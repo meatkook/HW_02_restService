@@ -15,15 +15,23 @@ import java.util.List;
 
 @WebServlet(name = "GameServlet", urlPatterns = "/api/games/*")
 public class GameController extends HttpServlet {
-    private GameService gameService;
-    private PlatformSupportService supportService;
-    private ObjectMapper objectMapper;
-    public void init() {
+    private final GameService gameService;
+    private final PlatformSupportService supportService;
+    private final ObjectMapper objectMapper;
+
+    public GameController(){
         gameService = new GameService();
         supportService = new PlatformSupportService();
         objectMapper = new ObjectMapper();
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    public GameController(GameService gameService, PlatformSupportService platformSupportService){
+        this.gameService = gameService;
+        this.supportService = platformSupportService;
+        objectMapper = new ObjectMapper();
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pathInfo = request.getPathInfo();
         if (pathInfo == null || pathInfo.equals("/")) {
             List<GameDto> games = gameService.getAllGames();
@@ -41,20 +49,22 @@ public class GameController extends HttpServlet {
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pathInfo = request.getPathInfo();
         GameDto newGame = objectMapper.readValue(request.getReader(), GameDto.class);
         newGame = gameService.createGame(newGame);
 
         if (pathInfo != null) {
             Long platformId = Long.parseLong(pathInfo.substring(1));
-            PlatformSupportDto supportDto = new PlatformSupportDto(newGame.getId(), platformId);
+            PlatformSupportDto supportDto = new PlatformSupportDto();
+            supportDto.setGameId(newGame.getId());
+            supportDto.setPlatformId(platformId);
             supportService.create(supportDto);
         }
         response.setStatus(HttpServletResponse.SC_CREATED);
     }
 
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pathInfo = request.getPathInfo();
         if (pathInfo.matches("/\\d+")) {
             Long id = Long.parseLong(pathInfo.substring(1));
@@ -68,7 +78,7 @@ public class GameController extends HttpServlet {
         }
     }
 
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) {
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) {
         String pathInfo = request.getPathInfo();
         if (pathInfo.matches("/\\d+")) {
             Long id = Long.parseLong(pathInfo.substring(1));

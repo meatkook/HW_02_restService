@@ -14,6 +14,9 @@ public class AppConfig {
      */
     private String url;
 
+    /**
+     * The database name for accessing the application.
+     */
     private String dbName;
 
     /**
@@ -26,6 +29,9 @@ public class AppConfig {
      */
     private String password;
 
+    /**
+     * The database driver class name.
+     */
     private String dbDriverClass;
 
     /**
@@ -35,7 +41,6 @@ public class AppConfig {
         try {
             Properties properties = new Properties();
             InputStream configFile = getClass().getClassLoader().getResourceAsStream("application.yml");
-//            FileInputStream configFile = new FileInputStream("src/main/resources/application.yml");
             properties.load(configFile);
 
             url = properties.getProperty("url");
@@ -51,6 +56,29 @@ public class AppConfig {
         }
     }
 
+    public AppConfig(Properties properties,
+                     InputStream configFile,
+                     String urlProperty,
+                     String dbNameProperty,
+                     String usernameProperty,
+                     String passwordProperty,
+                     String dbDriverClassProperty){
+
+        try {
+            properties.load(configFile);
+            url = properties.getProperty(urlProperty);
+            dbName = properties.getProperty(dbNameProperty);
+            username = properties.getProperty(usernameProperty);
+            password = properties.getProperty(passwordProperty);
+            dbDriverClass = properties.getProperty(dbDriverClassProperty);
+
+            assert configFile != null;
+            configFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * @return the full URL of the database
      */
@@ -58,6 +86,9 @@ public class AppConfig {
         return url;
     }
 
+    /**
+     * @return the database name
+     */
     public String getDbName() {
         return dbName;
     }
@@ -76,6 +107,9 @@ public class AppConfig {
         return password;
     }
 
+    /**
+     * @return the database driver class name
+     */
     public String getDbDriverClass() {
         return dbDriverClass;
     }
