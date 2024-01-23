@@ -1,8 +1,8 @@
 package controller;
 
-import com.kokotov.hw_02_restservice.controller.PlatformSupportController;
-import com.kokotov.hw_02_restservice.dto.PlatformSupportDto;
-import com.kokotov.hw_02_restservice.service.PlatformSupportService;
+import com.aston.restservice.controller.PlatformSupportController;
+import com.aston.restservice.dto.PlatformSupportDto;
+import com.aston.restservice.service.PlatformSupportService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;

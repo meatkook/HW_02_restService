@@ -1,9 +1,9 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kokotov.hw_02_restservice.controller.DeveloperController;
-import com.kokotov.hw_02_restservice.dto.DeveloperDto;
-import com.kokotov.hw_02_restservice.service.DeveloperService;
+import com.aston.restservice.controller.DeveloperController;
+import com.aston.restservice.dto.DeveloperDto;
+import com.aston.restservice.service.DeveloperService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;

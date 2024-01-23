@@ -1,10 +1,10 @@
 package service;
 
-import com.kokotov.hw_02_restservice.dto.GameDto;
-import com.kokotov.hw_02_restservice.entity.Game;
-import com.kokotov.hw_02_restservice.mapper.impl.GameMapper;
-import com.kokotov.hw_02_restservice.repository.impl.GameRepository;
-import com.kokotov.hw_02_restservice.service.GameService;
+import com.aston.restservice.dto.GameDto;
+import com.aston.restservice.entity.Game;
+import com.aston.restservice.mapper.impl.GameMapper;
+import com.aston.restservice.repository.impl.GameRepository;
+import com.aston.restservice.service.GameService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,10 +1,10 @@
 package service;
 
-import com.kokotov.hw_02_restservice.dto.PlatformDto;
-import com.kokotov.hw_02_restservice.entity.Platform;
-import com.kokotov.hw_02_restservice.mapper.impl.PlatformMapper;
-import com.kokotov.hw_02_restservice.repository.impl.PlatformRepository;
-import com.kokotov.hw_02_restservice.service.PlatformService;
+import com.aston.restservice.dto.PlatformDto;
+import com.aston.restservice.entity.Platform;
+import com.aston.restservice.mapper.impl.PlatformMapper;
+import com.aston.restservice.repository.impl.PlatformRepository;
+import com.aston.restservice.service.PlatformService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

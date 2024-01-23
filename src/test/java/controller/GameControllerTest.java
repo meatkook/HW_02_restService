@@ -1,13 +1,13 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kokotov.hw_02_restservice.controller.GameController;
-import com.kokotov.hw_02_restservice.dto.DeveloperDto;
-import com.kokotov.hw_02_restservice.dto.GameDto;
-import com.kokotov.hw_02_restservice.dto.PlatformDto;
-import com.kokotov.hw_02_restservice.dto.PlatformSupportDto;
-import com.kokotov.hw_02_restservice.service.GameService;
-import com.kokotov.hw_02_restservice.service.PlatformSupportService;
+import com.aston.restservice.controller.GameController;
+import com.aston.restservice.dto.DeveloperDto;
+import com.aston.restservice.dto.GameDto;
+import com.aston.restservice.dto.PlatformDto;
+import com.aston.restservice.dto.PlatformSupportDto;
+import com.aston.restservice.service.GameService;
+import com.aston.restservice.service.PlatformSupportService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;

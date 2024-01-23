@@ -1,7 +1,7 @@
 package repository;
 
-import com.kokotov.hw_02_restservice.entity.PlatformSupport;
-import com.kokotov.hw_02_restservice.repository.impl.PlatformSupportRepository;
+import com.aston.restservice.entity.PlatformSupport;
+import com.aston.restservice.repository.impl.PlatformSupportRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

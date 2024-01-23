@@ -1,8 +1,8 @@
 package repository;
 
-import com.kokotov.hw_02_restservice.entity.Developer;
-import com.kokotov.hw_02_restservice.entity.Game;
-import com.kokotov.hw_02_restservice.repository.impl.GameRepository;
+import com.aston.restservice.entity.Developer;
+import com.aston.restservice.entity.Game;
+import com.aston.restservice.repository.impl.GameRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 
 class GameRepositoryTest {
